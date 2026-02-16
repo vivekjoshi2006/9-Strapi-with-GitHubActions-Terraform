@@ -9,3 +9,15 @@ variable "key_name" {
   type        = string
   default     = "strapi-key"
 }
+
+variable "instance_type" {
+  description = "EC2 instance type"
+  type        = string
+  default     = "t2.medium"
+}
+
+variable "docker_image" {
+  description = "Docker image for Strapi"
+  type        = string
+  default     = "dockerhub-username/strapi-app:latest" # Yahan apna DockerHub username check kar lein
+}
