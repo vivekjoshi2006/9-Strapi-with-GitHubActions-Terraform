@@ -58,14 +58,3 @@ This project automates the deployment of a **Strapi CMS** (Headless CMS) onto an
 3. **Deployment:** * Push code to the `vivek-joshi` branch.
 * Create a Pull Request to `main`.
 * Once merged, GitHub Actions will automatically provision the AWS resources and start the Strapi container.
-
-
-
----
-
-## 📺 Demo & Links
-
-* **GitHub PR:** [View Pull Request](https://github.com/vivekjoshi2006/9-Strapi-with-GitHubActions-Terraform/compare/main...vivek-joshi)
-* **Loom Video:** [Watch Project Walkthrough](https://www.loom.com/share/d1afc0f678a74fd7b9d08d9638f578e4)
-
----
