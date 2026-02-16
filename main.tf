@@ -1,6 +1,6 @@
 resource "aws_security_group" "strapi_sg" {
-  name        = "strapi_sg_new"
-  description = "Allow SSH and Strapi"
+  name        = "strapi_sg_final_v3" # Unique name to avoid duplicate error
+  description = "Allow inbound traffic for Strapi"
 
   ingress {
     from_port   = 22
@@ -25,21 +25,22 @@ resource "aws_security_group" "strapi_sg" {
 }
 
 resource "aws_instance" "strapi_server" {
-  ami           = "ami-0e2c8ccd4e0269736" # Amazon Linux 2023
-  instance_type = "t2.micro"
+  ami           = "ami-0c7217cdde317cfec" # Ubuntu 22.04 LTS in us-east-1
+  instance_type = var.instance_type
+  key_name      = var.key_name
   vpc_security_group_ids = [aws_security_group.strapi_sg.id]
 
-  # This script runs on boot to pull your Docker image
   user_data = <<-EOF
               #!/bin/bash
-              yum update -y
-              yum install -y docker
-              systemctl start docker
-              systemctl enable docker
-              docker run -d -p 1337:1337 --name strapi-app ${var.docker_image}
+              sudo apt-get update -y
+              sudo apt-get install -y docker.io
+              sudo systemctl start docker
+              sudo systemctl enable docker
+              sudo docker pull ${var.docker_image}
+              sudo docker run -d -p 1337:1337 --name strapi-app ${var.docker_image}
               EOF
 
   tags = {
-    Name = "Strapi-Vivek-Deployment"
+    Name = "Strapi-Server-Vivek"
   }
 }
