@@ -30,7 +30,6 @@ resource "aws_instance" "strapi_server" {
   instance_type = "t2.micro"              
   vpc_security_group_ids = [aws_security_group.strapi_sg.id]
 
-  # User Data to install Docker and run Strapi
   user_data = <<-EOF
               #!/bin/bash
               sudo apt-get update -y
