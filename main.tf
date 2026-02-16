@@ -1,5 +1,5 @@
 resource "aws_security_group" "strapi_sg" {
-  name        = "strapi_sg_final_v3" # Unique name to avoid duplicate error
+  name        = "strapi_sg_final_v4" # Phir se naya naam taaki error na aaye
   description = "Allow inbound traffic for Strapi"
 
   ingress {
@@ -25,10 +25,10 @@ resource "aws_security_group" "strapi_sg" {
 }
 
 resource "aws_instance" "strapi_server" {
-  ami           = "ami-0c7217cdde317cfec" # Ubuntu 22.04 LTS in us-east-1
-  instance_type = var.instance_type
-  key_name      = var.key_name
+  ami           = "ami-0c7217cdde317cfec" 
+  instance_type = "t2.micro" # Seedha yahan likh diya
   vpc_security_group_ids = [aws_security_group.strapi_sg.id]
+  # key_name line poori tarah hata di gayi hai
 
   user_data = <<-EOF
               #!/bin/bash
@@ -43,4 +43,8 @@ resource "aws_instance" "strapi_server" {
   tags = {
     Name = "Strapi-Server-Vivek"
   }
+}
+
+output "strapi_url" {
+  value = "http://${aws_instance.strapi_server.public_ip}:1337"
 }
