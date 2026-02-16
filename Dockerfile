@@ -1,9 +1,8 @@
 FROM node:20-alpine AS build
-RUN apk update && apk add --no-cache build-base gcc autoconf automake libtool zlib-dev libpng-dev vips-dev > /dev/null 2>&1
+RUN apk update && apk add --no-cache build-base gcc autoconf automake libtool zlib-dev libpng-dev vips-dev
 WORKDIR /opt/
 COPY package.json package-lock.json ./
 RUN npm install
-PATH /opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY . .
 RUN npm run build

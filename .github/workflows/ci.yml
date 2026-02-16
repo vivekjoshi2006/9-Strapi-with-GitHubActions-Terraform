@@ -1,10 +1,10 @@
-name: CI - Build and Push Strapi
+name: CI - Build Strapi Image
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build-push:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
