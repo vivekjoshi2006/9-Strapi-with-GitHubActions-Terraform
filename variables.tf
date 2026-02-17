@@ -19,5 +19,5 @@ variable "instance_type" {
 variable "docker_image" {
   description = "Docker image for Strapi"
   type        = string
-  default     = "dockerhub-username/strapi-app:latest" # Yahan apna DockerHub username check kar lein
+  default     = "dockerhub-username/strapi-app:latest"
 }
